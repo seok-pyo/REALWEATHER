@@ -40,8 +40,8 @@ open api는 '기상청 단기예보 조회서비스'를 이용한다.
 - 당일의 최고 기온
 
 기술 스택
-Frontend: nextJS, react, tanstack-query, zustand, tail-wind
-Backend: supabase(초기에는 json으로 검색), vercel
+Frontend: vite, react, tanstack-query, zustand, tail-wind
+Backend: vercel
 API: openWheatherMap, Geocoder API 2.0
 
 아키텍쳐 디자인: FSD
@@ -58,4 +58,24 @@ API: openWheatherMap, Geocoder API 2.0
 -> 국토교통부의 Geocoder API를 이용하여 '좌표를 주소로 변환'
 
 고민4.
-CSR vs SSR. 활용하고 있는 API들의 키들이 있기 때문에 SSR을 기본적으로 사용하기로 하였음. CSR 보다 네트워크 사용량이 적을 것으로 예상. 속도 측면에서 이득이 있을 것으로 예상.
+CSR vs SSR. 검색 기능을 json으로 구현할 것이기 때문에 CSR로 구현하는 편이 좋을 듯. 전체 페이지 구성 상 라우팅 기능을 사용하지 않아도 될 것 같음. API 키는 vercel의 serverless 기능을 이용.
+
+고민5.
+'즐겨찾기' 페이지를 사용할 것인지, 아니면 하나의 화면에서 '즐겨찾기'를 구현할 것인지 고민.
+-> 하나의 페이지만 사용하며 '즐겨찾기'를 구현. 모바일 화면을 고려하였을 때, UI 적으로도 싱글 페이지로 구현하는 것이 더 적합하다고 판단.
+
+API 호출 데이터 흐름 정리
+
+1. 웹에 처음 접근했을 때
+   위치정보 -> API 호출(geocoder/openWheatherMap) -> 현재 날씨 표시
+2. 검색해서 선택한 경우
+   입력 창 쿼리 -> API 호출(geocoder/openWheatherMap) -> 현재 날씨 표시
+3. 현재 날씨를 '즐겨찾기'를 누른 경우
+
+- 3-1. 현재 날씨를 호출한 쿼리를 기억
+- 3-2. 응답값을 로컬 스토리지에 저장
+- 3-3. '즐겨찾기' 카드 생성
+
+4. '즐겨찾기' 카드를 선택하는 경우
+
+- 해당 카드의 상태를 로컬 스토리지에 저장하고 '현재 날씨 표시'
