@@ -40,7 +40,7 @@ open api는 '기상청 단기예보 조회서비스'를 이용한다.
 - 당일의 최고 기온
 
 기술 스택
-Frontend: vite, react, tanstack-query, zustand, tail-wind
+Frontend: vite, react, tanstack-query, tail-wind
 Backend: vercel
 API: openWheatherMap, Geocoder API 2.0
 
