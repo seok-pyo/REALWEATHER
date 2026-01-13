@@ -40,12 +40,22 @@ open api는 '기상청 단기예보 조회서비스'를 이용한다.
 - 당일의 최고 기온
 
 기술 스택
-Frontend: Vite, react, tanstack-query, zustand, tail-wind
+Frontend: nextJS, react, tanstack-query, zustand, tail-wind
 Backend: supabase(초기에는 json으로 검색), vercel
+API: openWheatherMap, Geocoder API 2.0
 
 아키텍쳐 디자인: FSD
 
-기상청 API를 사용하는 경우, 현재 위치 기반 날씨를 검색하기 위해서는 격자 변환 코드가 필요.
+고민1.
+검색 기능을 구현할 때, json에 직접 접근하여 사용할지 OR DB를 구축하고 쿼리로 검색을 구현하는 것이 좋을 지 고민. 일단은 json에 바로 접근하여서 검색 가능 장소를 보여주는 방식으로 구현 예정.
 
-격자 변환 코드를 이해하고, 작성하는 방향과 openWheatherMap API로 수정하는 방향 두 가지 중
-프로젝트의 구현을 우선하기 위해, openWheatherMap API도 테스트 진행.
+고민2.
+기상청 API를 사용하는 경우, 현재 위치 기반 날씨를 검색하기 위해서는 격자 변환 코드가 필요.(경도, 위도 정보를 기상청 좌표값으로 변환)
+격자 변환 코드를 이해하고, 작성하는 방향과 openWheatherMap API로 수정하는 방향 두 가지 중 고민. 프로젝트의 구현을 우선하기 위해, openWheatherMap API로 먼저 구현 예정.
+
+고민3.
+현재 위치의 세부 정보를 얻고 싶을때, openWheatherMap으로는 세부 주소가 표기 되지 않음.
+-> 국토교통부의 Geocoder API를 이용하여 '좌표를 주소로 변환'
+
+고민4.
+CSR vs SSR. 활용하고 있는 API들의 키들이 있기 때문에 SSR을 기본적으로 사용하기로 하였음. CSR 보다 네트워크 사용량이 적을 것으로 예상. 속도 측면에서 이득이 있을 것으로 예상.
