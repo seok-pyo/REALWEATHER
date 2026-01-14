@@ -79,3 +79,10 @@ API 호출 데이터 흐름 정리
 4. '즐겨찾기' 카드를 선택하는 경우
 
 - 해당 카드의 상태를 로컬 스토리지에 저장하고 '현재 날씨 표시'
+
+화면 레이아웃 구성
+
+- 피그마를 이용해서 전체 레이아웃을 구성. tailwind의 값들을 기준으로 타이포그래피와 간격, 색상을 지정함.
+- 핵심 기능의 레이아웃을 디자인
+
+[화면 레이아웃](https://www.figma.com/design/VaAxemBOOKLVBA1ld0EojD/RealWheather?node-id=0-1&t=Yaqg7R3y3sHxpAnn-1)
