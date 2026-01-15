@@ -14,7 +14,7 @@ const fetchWeather = async (lat: number, lon: number) => {
 
 export function useWeatherQuery(lat: number, lon: number) {
   return useQuery({
-    queryKey: [lat, lon],
+    queryKey: ["weather", lat, lon],
     queryFn: () => fetchWeather(lat, lon),
   });
 }

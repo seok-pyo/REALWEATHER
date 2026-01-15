@@ -1,9 +1,22 @@
+import type { LocationResult } from "@/shared";
 import type { WeatherData } from "../model/types";
 
 interface Props {
-  data: WeatherData;
+  data?: WeatherData;
+  location?: LocationResult;
 }
 
-export function WeatherBoard() {
-  return <></>;
+export function WeatherBoard({ data, location }: Props) {
+  const cityName = `${location?.structure.level2} ${
+    location?.structure.level3
+      ? location?.structure.level3
+      : location?.structure.level4L
+  }`;
+
+  return (
+    <div className="bg-zinc-900">
+      <h1>{cityName}</h1>
+      <div className="flex"></div>
+    </div>
+  );
 }
