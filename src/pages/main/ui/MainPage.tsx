@@ -1,4 +1,4 @@
-import { Header } from "@/widgets";
+import { CurrentBoard, Header } from "@/widgets";
 import { FavoriteList } from "@/widgets";
 
 export function MainPage() {
@@ -6,6 +6,7 @@ export function MainPage() {
     <>
       <Header />
       <FavoriteList />
+      <CurrentBoard />
     </>
   );
 }
