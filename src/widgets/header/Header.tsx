@@ -1,9 +1,11 @@
+import { Search } from "@/features";
 import { Logo } from "@/shared/ui";
 
 export function Header() {
   return (
-    <header>
+    <header className="w-full mx-auto h-24 bg-zinc-900 flex items-center justify-between p-8 md:w-[70%] md:rounded-2xl">
       <Logo />
+      <Search />
     </header>
   );
 }
