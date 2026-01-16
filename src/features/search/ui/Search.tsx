@@ -37,7 +37,7 @@ export function Search() {
       )}
 
       <img
-        className="absolute right-4 z-15"
+        className="relative md:absolute -right-2 md:right-4 z-15"
         src={SearchIcon}
         onClick={handleClick}
       />
