@@ -8,9 +8,9 @@ export function WeatherTime(data: Props) {
   return (
     <div className="flex flex-col gap-4 whitespace-nowrap">
       <p>13시</p>
-      {/* <img /> */}
+
       <div className="mt-8 mb-8 flex flex-col gap-4">
-        <p>이미지</p>
+        <img src="https://openweathermap.org/img/wn/10d.png" />
         <p>-3.2</p>
       </div>
       <p>30</p>
