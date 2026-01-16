@@ -14,7 +14,7 @@ export function WeatherBoard({ data, location }: Props) {
   }`;
 
   return (
-    <div className="bg-zinc-900">
+    <div>
       <h1>{cityName}</h1>
       <div className="flex"></div>
     </div>
