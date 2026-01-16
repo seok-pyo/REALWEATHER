@@ -4,7 +4,9 @@ import { useState } from "react";
 
 export function MainPage() {
   const [toggle, setToggle] = useState(false);
-  const toggleFavorite = () => setToggle((prev) => !prev);
+  const toggleFavorite = () => {
+    setToggle((prev) => !prev);
+  };
 
   return (
     <div className="grid grid-cols-1 gap-4 grid-rows-[auto_2fr_3fr] min-h-screen w-full md:grid-cols-5 md:w-[80vw] md:min-h-0 md:h-[90vh] md:mx-auto">

@@ -1,4 +1,4 @@
-import type { LocationResult } from "@/shared";
+import type { LocationResult } from "../model/location";
 import type { WeatherData } from "../model/types";
 
 interface Props {
