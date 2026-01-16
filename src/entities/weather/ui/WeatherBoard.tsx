@@ -14,8 +14,8 @@ export function WeatherBoard({ data, location }: Props) {
   }`;
 
   return (
-    <div>
-      <h1>{cityName}</h1>
+    <div className="pl-8 pt-6">
+      <h1 className="text-zinc-300">{cityName}</h1>
       <div className="flex"></div>
     </div>
   );
