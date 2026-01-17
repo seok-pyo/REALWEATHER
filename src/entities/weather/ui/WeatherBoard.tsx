@@ -1,6 +1,7 @@
 import type { LocationResult } from "../model/location";
 import type { WeatherData } from "../model/types";
 import StarIcon from "@/shared/assets/star.svg";
+import StraIconFavorite from "@/shared/assets/star-favorite.svg";
 import { unixToLocal } from "../api";
 import { getCityName } from "../api/shared/getCityName";
 
@@ -9,6 +10,8 @@ interface Props {
   location?: LocationResult;
   isFavorite: boolean;
   onToggleFavorite: () => void;
+  isLoading?: boolean;
+  customName?: string;
 }
 
 export function WeatherBoard({
@@ -16,23 +19,40 @@ export function WeatherBoard({
   location,
   isFavorite,
   onToggleFavorite,
+  isLoading,
+  nickName,
 }: Props) {
   const cityName = getCityName(location);
+
+  if (isLoading) {
+    return (
+      <div className="pl-8 pt-6 pr-8">
+        <p className="text-zinc-600">데이터를 불러오고 있습니다</p>
+
+        <div className="h-55"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="pl-8 pt-6 pr-8">
       <div className="flex gap-4">
-        <img src={StarIcon} onClick={onToggleFavorite} />
-        <h1 className="text-zinc-300 text-xl">{cityName}</h1>
+        <img
+          src={`${isFavorite ? StraIconFavorite : StarIcon}`}
+          onClick={onToggleFavorite}
+        />
+        <h1 className="text-zinc-300 text-xl">{nickName || cityName}</h1>
       </div>
 
       <div className="flex flex-col mt-4 mb-4 xl:ml-10 xl:mr-10 xl:mt-10 xl:flex-row xl:gap-10 justify-center items-center text-zinc-400">
         <div className="flex">
-          {data && (
+          {data?.current.weather[0]?.icon ? (
             <img
               className="shrink-0 w-30 h-30"
               src={`https://openweathermap.org/img/wn/${data?.current.weather[0].icon}@4x.png`}
             />
+          ) : (
+            <div className="w-30 h-30 bg-zinc-700 rounded-full flex items-center justify-center"></div>
           )}
           <div className="flex flex-col justify-center items-center gap-2 whitespace-nowrap">
             <p className="text-4xl">{data?.current.temp.toFixed(1)}°</p>

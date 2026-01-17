@@ -5,6 +5,7 @@ interface FavoriteItem {
   address: string;
   lat: number;
   lon: number;
+  alias?: string;
 }
 
 interface FavoriteStore {
@@ -12,6 +13,7 @@ interface FavoriteStore {
   addFavorite: (item: FavoriteItem) => void;
   removeFavorite: (address: string) => void;
   isFavorite: (address: string) => boolean;
+  updateFavoriteAlias: (address: string, alias: string) => void;
 }
 
 export const useFavoriteStore = create<FavoriteStore>()(
@@ -31,6 +33,13 @@ export const useFavoriteStore = create<FavoriteStore>()(
 
       isFavorite: (address) =>
         get().favorites.some((item) => item.address === address),
+
+      updateFavoriteAlias: (address: string, alias: string) =>
+        set((state) => ({
+          favorites: state.favorites.map((item) =>
+            item.address === address ? { ...item, alias } : item
+          ),
+        })),
     }),
     {
       name: "savedLocations",

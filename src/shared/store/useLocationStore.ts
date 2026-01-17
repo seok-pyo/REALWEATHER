@@ -3,7 +3,6 @@ import { create } from "zustand";
 interface Location {
   lat: number;
   lon: number;
-
   setCoords: (lat: number, lon: number) => void;
 }
 

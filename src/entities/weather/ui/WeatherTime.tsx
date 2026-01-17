@@ -11,9 +11,13 @@ export function WeatherTime({ data }: Props) {
       <p>{unixToLocal(data?.dt || 0)}</p>
 
       <div className="mt-8 mb-8 flex flex-col gap-4 w-10">
-        <img
-          src={`https://openweathermap.org/img/wn/${data?.weather[0].icon}.png`}
-        />
+        {data?.weather[0]?.icon ? (
+          <img
+            src={`https://openweathermap.org/img/wn/${data?.weather[0].icon}.png`}
+          />
+        ) : (
+          <div className="w-10 h-10 bg-zinc-700 rounded-full flex items-center justify-center"></div>
+        )}
         <p>{data?.temp.toFixed(1)}°</p>
       </div>
       <p>{data?.pop}%</p>

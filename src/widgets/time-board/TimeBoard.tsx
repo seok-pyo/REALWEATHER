@@ -7,10 +7,12 @@ import ArrowRight from "@/shared/assets/arrow-right.svg";
 import { getCityName } from "@/entities/weather/api/shared/getCityName";
 import { useLocationStore } from "@/shared/store/useLocationStore";
 import { useEffect } from "react";
+import { useFavoriteStore } from "@/shared/store/useFavoriteStore";
 
 export function TimeBoard() {
   const { coords } = GetCurrentLocation();
   const { lat, lon, setCoords } = useLocationStore();
+  const { favorites } = useFavoriteStore();
 
   useEffect(() => {
     if (coords?.lat && coords?.lon) {
@@ -21,6 +23,9 @@ export function TimeBoard() {
   const { data, isLoading } = useGetWeather(lat, lon);
   const { data: location } = useGetCityName(lat, lon);
 
+  const currentFavorite = favorites.find((f) => f.lat === lat && f.lon === lon);
+  const nickName = currentFavorite?.alias;
+
   if (isLoading)
     return (
       <div className="pt-6 pl-8 w-100 h-[90vh] text-zinc-600">
@@ -30,9 +35,13 @@ export function TimeBoard() {
 
   return (
     <div className="flex flex-col pl-8 pt-6 mb-12 gap-8 text-zinc-400">
-      <h1 className="text-zinc-300 text-xl">
-        {getCityName(location).split(" ")[1]} 시간별 날씨
-      </h1>
+      {!isLoading ? (
+        <h1 className="text-zinc-300 text-xl">
+          {nickName || `${getCityName(location).split(" ")[1]} 시간별 날씨`}
+        </h1>
+      ) : (
+        <h1 className="text-zinc-600">데이터를 불러오고 있습니다</h1>
+      )}
       <div className="flex gap-12 mt-2 md:mt-2 relative">
         <div className="hidden absolute top-1/2 -translate-y-1/2 items-center md:flex justify-between w-9/10 pr-12 left-20">
           <img className="w-8" src={ArrowLeft} />
