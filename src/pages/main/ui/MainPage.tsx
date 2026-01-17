@@ -1,4 +1,4 @@
-import { CurrentBoard, Header, TimeTable } from "@/widgets";
+import { CurrentBoard, Header, TimeBoard } from "@/widgets";
 import { FavoriteList } from "@/widgets";
 import { useState } from "react";
 
@@ -21,7 +21,7 @@ export function MainPage() {
         <CurrentBoard />
       </div>
       <div className="md:col-span-3 bg-zinc-900 md:rounded-2xl">
-        <TimeTable />
+        <TimeBoard />
       </div>
       <div
         className={`${

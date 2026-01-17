@@ -73,7 +73,6 @@ export function CurrentBoard() {
   const { coords } = GetCurrentLocation();
   // const { data: locationData } = useGetCityName(coords?.lat, coords?.lon);
   const { data } = useGetWeather(coords?.lat, coords?.lon);
-  console.log(data);
 
   return <WeatherBoard data={data} location={locationData} />;
 }

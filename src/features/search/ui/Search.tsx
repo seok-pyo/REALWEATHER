@@ -13,10 +13,10 @@ export function Search() {
       <input
         onClick={toggleSearch}
         placeholder="장소를 입력해 주세요"
-        className="z-10 w-full hidden md:block bg-zinc-700 h-12 md:w-72 rounded-3xl placeholder:text-zinc-400 pl-4 outline-none text-zinc-300"
+        className="z-1000 w-full hidden md:block bg-zinc-700 h-12 md:w-72 rounded-3xl placeholder:text-zinc-400 pl-4 outline-none text-zinc-300"
       />
       {isOpen ? (
-        <div className="flex flex-col inset-0 bg-zinc-700 fixed md:w-72 md:h-96 md:top-[50%] md:rounded-b-3xl md:absolute">
+        <div className="flex flex-col inset-0 z-200 bg-zinc-700 fixed md:w-72 md:h-96 md:top-[50%] md:rounded-b-3xl md:absolute">
           <input
             placeholder="장소를 입력해 주세요"
             className="h-14 pt-10 placeholder:text-zinc-400 pl-10 outline-none text-zinc-300 md:hidden"

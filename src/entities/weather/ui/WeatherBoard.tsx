@@ -26,7 +26,7 @@ export function WeatherBoard({ data, location }: Props) {
         <div className="flex">
           <img
             className="shrink-0 w-30 h-30"
-            src="https://openweathermap.org/img/wn/10d@4x.png"
+            src={`https://openweathermap.org/img/wn/${data?.current.weather[0].icon}@4x.png`}
           />
           <div className="flex flex-col justify-center items-center gap-2 whitespace-nowrap">
             <p className="text-4xl">{data?.current.temp.toFixed(1)}°</p>

@@ -73,10 +73,15 @@ CSR vs SSR. 검색 기능을 json으로 구현할 것이기 때문에 CSR로 구
 고민6.
 
 반응형 컴포넌트 구현, position, display, scroll에 대한 이해
+세로 가로 반응형 모두 고려, 스크롤이 되지 않도록 세팅,
 
 고민7.
 
 FSD 구현 시 파일의 위치들을 고민하게 되었던 것들. entities에 Widget에서 사용하는 데이터와 ui를 구현하는 코드들을 위치.
+
+고민8.
+
+API 타입 받아오는 방식, current, daily, hourly를 모두 받아오지 않고, 제네릭을 사용해서 사용.
 
 API 호출 데이터 흐름 정리
 

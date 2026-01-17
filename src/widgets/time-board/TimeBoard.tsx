@@ -1,6 +1,15 @@
+import { useGetWeather } from "@/entities/weather/api";
 import { WeatherTime } from "@/entities/weather/ui/WeatherTime";
+import { GetCurrentLocation } from "../current-board/api/getCurrentLocation";
+import type { WeatherItem } from "@/entities/weather/model";
 
-export function TimeTable() {
+export function TimeBoard() {
+  const { coords } = GetCurrentLocation();
+  const { data, isLoading } = useGetWeather(coords?.lat, coords?.lon);
+
+  if (isLoading)
+    return <div className="pt-6 pl-8">데이터를 불러오고 있습니다</div>;
+
   return (
     <div className="flex flex-col pl-8 pt-6 mb-12 gap-8 text-zinc-400">
       <h1 className="text-zinc-300 text-xl">행당동 시간별 날씨</h1>
@@ -14,24 +23,9 @@ export function TimeTable() {
           <p>구름</p>
         </div>
         <div className="flex overflow-auto w-4/5 gap-8 scrollbar-hide">
-          <WeatherTime />
-          <WeatherTime />
-          <WeatherTime />
-          <WeatherTime />
-          <WeatherTime />
-          <WeatherTime />
-          <WeatherTime />
-          <WeatherTime />
-          <WeatherTime />
-          <WeatherTime />
-          <WeatherTime />
-          <WeatherTime />
-          <WeatherTime />
-          <WeatherTime />
-          <WeatherTime />
-          <WeatherTime />
-          <WeatherTime />
-          <WeatherTime />
+          {data?.hourly.map((item: WeatherItem<number>) => (
+            <WeatherTime key={item.dt} data={item} />
+          ))}
         </div>
       </div>
     </div>

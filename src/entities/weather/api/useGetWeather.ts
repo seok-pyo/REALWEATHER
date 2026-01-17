@@ -16,5 +16,6 @@ export function useGetWeather(lat?: number, lon?: number) {
   return useQuery({
     queryKey: ["weather", lat, lon],
     queryFn: () => fetchWeather(lat, lon),
+    enabled: !!lat && !!lon,
   });
 }
