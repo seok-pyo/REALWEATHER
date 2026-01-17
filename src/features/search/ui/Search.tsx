@@ -1,8 +1,10 @@
 import SearchIcon from "@/shared/assets/search.svg";
 import { useSearch } from "../model/useSearch";
+import { useRef } from "react";
 
 export function Search() {
   const { isOpen, toggleSearch, closeSearch } = useSearch();
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleClick = () => {
     if (!isOpen) toggleSearch();
@@ -11,6 +13,7 @@ export function Search() {
   return (
     <div className="relative flex w-full md:w-72 items-center">
       <input
+        ref={inputRef}
         onClick={toggleSearch}
         placeholder="장소를 입력해 주세요"
         className="z-1000 w-full hidden md:block bg-zinc-700 h-12 md:w-72 rounded-3xl placeholder:text-zinc-400 pl-4 outline-none text-zinc-300"
