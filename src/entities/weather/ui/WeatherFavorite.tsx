@@ -24,6 +24,7 @@ export function WeatherFavorite({ item }: Props) {
     e.stopPropagation();
     removeFavorite(item.address);
   };
+  const favoritePlace = item.address.split(" ");
 
   return (
     <div
@@ -32,12 +33,14 @@ export function WeatherFavorite({ item }: Props) {
     >
       <div className="flex gap-2 md:self-start md:ml-4">
         <img src={StarIcon} className="w-5" onClick={handleRemove} />
-        <p className="truncate maw-w-[100px]">{item.address}</p>
+        <p className="truncate max-w-25">
+          {`${favoritePlace[1]} ${favoritePlace[2]}`}
+        </p>
       </div>
       <div className="flex gap-4">
         {weather && (
           <img
-            src={`https://openweathermap.org/img/wn/${weather?.current.weather[0].icon}@2x.png`}
+            src={`https://openweathermap.org/img/wn/${weather?.current.weather[0].icon}.png`}
           />
         )}
         <div className="flex md:flex-col gap-4 md:gap-0">

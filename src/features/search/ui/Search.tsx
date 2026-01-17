@@ -32,6 +32,7 @@ export function Search() {
     const formatPlace = place.split("-").join(" ");
     setKeyword(formatPlace);
     setSelectAddress(formatPlace);
+    setKeyword("");
     closeSearch();
   };
 
