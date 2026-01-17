@@ -3,10 +3,12 @@ import { GetCurrentLocation } from "../api/GetCurrentLocation";
 import { useGetCityName, useGetWeather } from "@/entities/weather/api";
 import { useLocationStore } from "@/shared/store/useLocationStore";
 import { useEffect } from "react";
+import { useFavoriteStore } from "@/shared/store/useFavoriteStore";
 
 export function CurrentBoard() {
   const { coords } = GetCurrentLocation();
   const { lat, lon, setCoords } = useLocationStore();
+  const { addFavorite, removeFavorite, isFavorite } = useFavoriteStore();
 
   useEffect(() => {
     if (coords?.lat && coords?.lon) {
@@ -15,8 +17,31 @@ export function CurrentBoard() {
   }, [coords, setCoords]);
 
   const { data } = useGetWeather(lat, lon);
-  const { data: locationData, isLoading } = useGetCityName(lat, lon);
-  if (isLoading) console.log("데이터를 가져오는 중");
+  const { data: locationData } = useGetCityName(lat, lon);
 
-  return <WeatherBoard data={data} location={locationData} />;
+  const currentAddress = locationData?.text || "";
+  const favorited = isFavorite(currentAddress);
+
+  const handleToggleFavorite = () => {
+    if (!currentAddress) return;
+
+    if (favorited) {
+      removeFavorite(currentAddress);
+    } else {
+      addFavorite({
+        address: currentAddress,
+        lat,
+        lon,
+      });
+    }
+  };
+
+  return (
+    <WeatherBoard
+      data={data}
+      location={locationData}
+      isFavorite={favorited}
+      onToggleFavorite={handleToggleFavorite}
+    />
+  );
 }

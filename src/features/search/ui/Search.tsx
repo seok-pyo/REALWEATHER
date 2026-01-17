@@ -39,6 +39,9 @@ export function Search() {
     if (!isOpen) toggleSearch();
   };
 
+  const isEmpty = keyword.trim().length === 0;
+  const hasResults = results.length > 0;
+
   return (
     <div className="relative flex w-full md:w-72 items-center">
       <input
@@ -57,17 +60,27 @@ export function Search() {
             className="h-14 pt-10 placeholder:text-zinc-400 pl-10 outline-none text-zinc-300 md:hidden"
           />
           {/* <p className="mt-8 ml-10 md:ml-4 h-7 text-zinc-500">최근 검색</p> */}
-          <ul className="z-1200 mt-8 text-zinc-300 ml-10 md:ml-4 flex flex-col gap-2 overflow-y-auto scrollbar-hide">
-            {results.map((item, idx) => (
-              <li
-                key={idx}
-                className="z-1200"
-                onClick={() => handlePlace(item)}
-              >
-                {item.split("-").join(" ")}
-              </li>
-            ))}
-          </ul>
+          {hasResults ? (
+            <ul className="z-1200 mt-8 text-zinc-300 ml-10 md:ml-4 flex flex-col gap-2 overflow-y-auto scrollbar-hide">
+              {results.map((item, idx) => (
+                <li
+                  key={idx}
+                  className="z-1200"
+                  onClick={() => handlePlace(item)}
+                >
+                  {item.split("-").join(" ")}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="flex-1 flex items-center justify-center text-zinc-400 text-sm">
+              {isEmpty ? (
+                ""
+              ) : (
+                <p className="">해당 장소의 정보가 제공되지 않습니다.</p>
+              )}
+            </div>
+          )}
           <div className="flex-1 flex items-center justify-center text-zinc-400">
             {/* <p className="">최근 검색어가 없습니다</p> */}
           </div>

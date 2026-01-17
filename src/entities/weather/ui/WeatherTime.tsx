@@ -5,22 +5,23 @@ interface Props {
   data?: WeatherItem<number>;
 }
 
-export function WeatherTime(data: Props) {
+export function WeatherTime({ data }: Props) {
   return (
     <div className="flex flex-col gap-4 whitespace-nowrap">
-      <p>{unixToLocal(data.data?.dt || 0)}</p>
+      <p>{unixToLocal(data?.dt || 0)}</p>
 
       <div className="mt-8 mb-8 flex flex-col gap-4 w-10">
         <img
-          src={`https://openweathermap.org/img/wn/${data.data?.weather[0].icon}.png`}
+          src={`https://openweathermap.org/img/wn/${data?.weather[0].icon}.png`}
         />
-        <p>{data.data?.temp.toFixed(1)}°</p>
+        <p>{data?.temp.toFixed(1)}°</p>
       </div>
-      <p>{data.data?.pop}%</p>
-      <p>{data.data?.pop ? data.data?.rain : 0}mm</p>
-      <p>{data.data?.humidity}</p>
-      <p>{data.data?.uvi}</p>
-      <p>{data.data?.clouds}</p>
+      <p>{data?.pop}%</p>
+      {/* <p>{data.data?.pop ? data.data?.rain : 0}mm</p> */}
+      <p>{data?.rain ? data.rain["1h"] || 0 : 0}mm</p>
+      <p>{data?.humidity}</p>
+      <p>{data?.uvi}</p>
+      <p>{data?.clouds}</p>
     </div>
   );
 }

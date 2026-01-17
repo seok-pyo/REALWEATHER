@@ -8,7 +8,7 @@ export interface WeatherItem<T> {
   uvi: number;
   clouds: number;
   pop?: number;
-  rain?: number;
+  rain?: { "1h"?: number };
   snow?: number;
   weather: {
     id: number;
