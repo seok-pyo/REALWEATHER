@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 
-const fetchWeather = async (lat: number, lon: number) => {
+const fetchWeather = async (lat?: number, lon?: number) => {
   const response =
-    await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${
+    await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=minutely&appid=${
       import.meta.env.VITE_OPENWEATHER_API_KEY
     }
 `);
@@ -12,7 +12,7 @@ const fetchWeather = async (lat: number, lon: number) => {
   return response.json();
 };
 
-export function useWeatherQuery(lat: number, lon: number) {
+export function useGetWeather(lat?: number, lon?: number) {
   return useQuery({
     queryKey: ["weather", lat, lon],
     queryFn: () => fetchWeather(lat, lon),

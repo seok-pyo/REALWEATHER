@@ -1,1 +1,1 @@
-export { CurrentBoard } from "./CurrentBoard";
+export { CurrentBoard } from "./ui/CurrentBoard";

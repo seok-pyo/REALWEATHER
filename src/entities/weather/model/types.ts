@@ -1,9 +1,10 @@
-interface weatherItem {
+interface weatherItem<T> {
   dt: number;
   sunrise: number;
   sunset: number;
-  temp: number;
+  temp: T;
   humidity: number;
+  feels_like: number;
   uvi: number;
   clouds: number;
   weather: {
@@ -17,6 +18,7 @@ interface weatherItem {
 export interface WeatherData {
   lat: number;
   lon: number;
-  current: weatherItem;
-  hourly: weatherItem[];
+  current: weatherItem<number>;
+  hourly: weatherItem<number>[];
+  daily: weatherItem<{ min: number; max: number }>[];
 }
