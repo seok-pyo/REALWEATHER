@@ -2,6 +2,7 @@ import type { LocationResult } from "../model/location";
 import type { WeatherData } from "../model/types";
 import StarIcon from "@/shared/assets/star.svg";
 import { unixToLocal } from "../api";
+import { getCityName } from "../api/shared/getCityName";
 
 interface Props {
   data?: WeatherData;
@@ -9,11 +10,7 @@ interface Props {
 }
 
 export function WeatherBoard({ data, location }: Props) {
-  const cityName = `${location?.structure.level2} ${
-    location?.structure.level3
-      ? location?.structure.level3
-      : location?.structure.level4L
-  }`;
+  const cityName = getCityName(location);
 
   return (
     <div className="pl-8 pt-6 pr-8">

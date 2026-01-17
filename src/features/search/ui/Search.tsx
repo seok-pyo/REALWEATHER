@@ -1,12 +1,24 @@
 import SearchIcon from "@/shared/assets/search.svg";
 import { filterPlace, useSearch } from "../model/useSearch";
-import { useRef, useState, type ChangeEvent } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
+import { useGetCoordi } from "@/entities/weather/api/useGetCoordi";
+import { useLocationStore } from "@/shared/store/useLocationStore";
 
 export function Search() {
   const { isOpen, toggleSearch, closeSearch } = useSearch();
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  // const inputRef = useRef<HTMLInputElement | null>(null);
   const [keyword, setKeyword] = useState("");
   const [results, setResults] = useState<string[]>([]);
+  const [selectAddress, setSelectAddress] = useState("");
+
+  const { data: coords } = useGetCoordi(selectAddress);
+  const { setCoords } = useLocationStore();
+
+  useEffect(() => {
+    if (coords) {
+      setCoords(Number(coords.y), Number(coords.x));
+    }
+  }, [coords, setCoords]);
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -14,6 +26,13 @@ export function Search() {
     const filtered = filterPlace(value);
     setResults(filtered);
     if (!isOpen) toggleSearch();
+  };
+
+  const handlePlace = (place: string) => {
+    const formatPlace = place.split("-").join(" ");
+    setKeyword(formatPlace);
+    setSelectAddress(formatPlace);
+    closeSearch();
   };
 
   const handleClick = () => {
@@ -40,7 +59,11 @@ export function Search() {
           {/* <p className="mt-8 ml-10 md:ml-4 h-7 text-zinc-500">최근 검색</p> */}
           <ul className="z-1200 mt-8 text-zinc-300 ml-10 md:ml-4 flex flex-col gap-2 overflow-y-auto scrollbar-hide">
             {results.map((item, idx) => (
-              <li key={idx} className="z-1200">
+              <li
+                key={idx}
+                className="z-1200"
+                onClick={() => handlePlace(item)}
+              >
                 {item.split("-").join(" ")}
               </li>
             ))}
