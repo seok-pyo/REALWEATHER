@@ -1,3 +1,4 @@
+import places from "./korea_districts.json";
 import { useState } from "react";
 
 export function useSearch() {
@@ -8,3 +9,13 @@ export function useSearch() {
 
   return { isOpen, toggleSearch, closeSearch };
 }
+
+export const filterPlace = (keyword: string) => {
+  if (!keyword.trim()) return [];
+
+  return places
+    .filter((place) => {
+      return place.includes(keyword);
+    })
+    .slice(0, 10);
+};

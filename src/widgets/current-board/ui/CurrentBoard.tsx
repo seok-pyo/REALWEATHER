@@ -1,5 +1,5 @@
 import { WeatherBoard } from "@/entities/weather";
-import { GetCurrentLocation } from "../api/getCurrentLocation";
+import { GetCurrentLocation } from "../api/GetCurrentLocation";
 import { useGetCityName, useGetWeather } from "@/entities/weather/api";
 // import { useWeatherQuery } from "@/entities/weather/api/useGetWeather";
 // import { useGetCityName } from "@/shared";

@@ -1,6 +1,6 @@
 import { useGetWeather } from "@/entities/weather/api";
 import { WeatherTime } from "@/entities/weather/ui/WeatherTime";
-import { GetCurrentLocation } from "../current-board/api/getCurrentLocation";
+import { GetCurrentLocation } from "../current-board/api/GetCurrentLocation";
 import type { WeatherItem } from "@/entities/weather/model";
 import ArrowLeft from "@/shared/assets/arrow-left.svg";
 import ArrowRight from "@/shared/assets/arrow-right.svg";
@@ -9,8 +9,10 @@ export function TimeBoard() {
   const { coords } = GetCurrentLocation();
   const { data, isLoading } = useGetWeather(coords?.lat, coords?.lon);
 
-  if (isLoading)
-    return <div className="pt-6 pl-8">데이터를 불러오고 있습니다</div>;
+  // if (isLoading)
+  //   return (
+  //     <div className="pt-6 pl-8 w-100 h-[90vh]">데이터를 불러오고 있습니다</div>
+  //   );
 
   return (
     <div className="flex flex-col pl-8 pt-6 mb-12 gap-8 text-zinc-400">
@@ -29,9 +31,9 @@ export function TimeBoard() {
           <p>구름</p>
         </div>
         <div className="flex overflow-auto w-4/5 gap-8 scrollbar-hide">
-          {data?.hourly.map((item: WeatherItem<number>) => (
-            <WeatherTime key={item.dt} data={item} />
-          ))}
+          {data?.hourly.map((item: WeatherItem<number>) =>
+            isLoading ? <></> : <WeatherTime key={item.dt} data={item} />
+          )}
         </div>
       </div>
     </div>
