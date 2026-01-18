@@ -6,7 +6,6 @@ export const getCoordi = async (place: string) => {
   if (!response.ok) throw new Error("주소를 좌표로 변환하는데 실패하였습니다");
   const data = await response.json();
 
-  console.log(data);
   if (data.response?.status === "OK") {
     return data.response.result.point;
   }

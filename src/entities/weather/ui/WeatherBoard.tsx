@@ -3,7 +3,6 @@ import type { WeatherData } from "../model/types";
 import StarIcon from "@/shared/assets/star.svg";
 import StraIconFavorite from "@/shared/assets/star-favorite.svg";
 import { unixToLocal } from "../api";
-import { getCityName } from "../api/shared/getCityName";
 
 interface Props {
   data?: WeatherData;
@@ -12,6 +11,7 @@ interface Props {
   onToggleFavorite: () => void;
   isLoading?: boolean;
   customName?: string;
+  nickName?: string;
 }
 
 export function WeatherBoard({
@@ -22,13 +22,18 @@ export function WeatherBoard({
   isLoading,
   nickName,
 }: Props) {
-  const cityName = getCityName(location);
+  const cityName = location?.text || "";
+  let formatCityName;
+
+  if (cityName) {
+    const nameArr = cityName.split(" ");
+    formatCityName = `${nameArr[1]} ${nameArr[2]}`;
+  }
 
   if (isLoading) {
     return (
       <div className="pl-8 pt-6 pr-8">
         <p className="text-zinc-600">데이터를 불러오고 있습니다</p>
-
         <div className="h-55"></div>
       </div>
     );
@@ -41,7 +46,9 @@ export function WeatherBoard({
           src={`${isFavorite ? StraIconFavorite : StarIcon}`}
           onClick={onToggleFavorite}
         />
-        <h1 className="text-zinc-300 text-xl">{nickName || cityName}</h1>
+        <h1 className="text-zinc-300 text-xl">
+          {nickName || formatCityName || "데이터 가져오는 중.."}
+        </h1>
       </div>
 
       <div className="flex flex-col mt-4 mb-4 xl:ml-10 xl:mr-10 xl:mt-10 xl:flex-row xl:gap-10 justify-center items-center text-zinc-400">
@@ -74,11 +81,11 @@ export function WeatherBoard({
           </div>
           <div className="flex flex-col items-center">
             <p>일출</p>
-            <p>{unixToLocal(data?.daily[0].sunset || 0)}</p>
+            <p>{unixToLocal(data?.daily[0].sunrise || 0)}</p>
           </div>
           <div className="flex flex-col items-center">
             <p>일몰</p>
-            <p>{unixToLocal(data?.daily[0].sunrise || 0)}</p>
+            <p>{unixToLocal(data?.daily[0].sunset || 0)}</p>
           </div>
         </div>
       </div>

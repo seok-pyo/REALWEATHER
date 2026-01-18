@@ -26,6 +26,9 @@ export function TimeBoard() {
   const currentFavorite = favorites.find((f) => f.lat === lat && f.lon === lon);
   const nickName = currentFavorite?.alias;
 
+  const formattedTitle = location ? getCityName(location) : "";
+  const boardTitle = location ? formattedTitle.split(" ")[1] : "";
+
   if (isLoading)
     return (
       <div className="pt-6 pl-8 w-100 h-[90vh] text-zinc-600">
@@ -37,7 +40,7 @@ export function TimeBoard() {
     <div className="flex flex-col pl-8 pt-6 mb-12 gap-8 text-zinc-400">
       {!isLoading ? (
         <h1 className="text-zinc-300 text-xl">
-          {nickName || `${getCityName(location).split(" ")[1]} 시간별 날씨`}
+          {nickName || `${boardTitle} 시간별 날씨`}
         </h1>
       ) : (
         <h1 className="text-zinc-600">데이터를 불러오고 있습니다</h1>
