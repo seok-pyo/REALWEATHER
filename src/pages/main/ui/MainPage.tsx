@@ -3,7 +3,7 @@ import { FavoriteList } from "@/widgets";
 import { useState } from "react";
 
 export function MainPage() {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
   const toggleFavorite = () => {
     setToggle((prev) => !prev);
   };

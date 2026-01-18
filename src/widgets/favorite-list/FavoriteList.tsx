@@ -14,7 +14,11 @@ export function FavoriteList() {
       </div>
 
       <p className="text-center mt-6 mb-6 text-zinc-500">
-        즐겨찾기를 모두 저장했어요
+        {!favorites.length && "원하는 지역을 저장해보세요"}
+        {favorites.length === 6
+          ? "즐겨찾기를 모두 저장했어요"
+          : favorites.length !== 0 &&
+            `최대 개수(6개) 중 ${favorites.length}개를 저장했어요`}
       </p>
     </div>
   );
