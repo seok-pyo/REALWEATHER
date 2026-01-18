@@ -20,10 +20,10 @@ export function WeatherTime({ data }: Props) {
         )}
         <p>{data?.temp.toFixed(1)}°</p>
       </div>
-      <p>{data?.pop}%</p>
-      <p>{data?.rain ? data.rain["1h"] || 0 : 0}mm</p>
-      <p>{data?.humidity}</p>
-      <p>{data?.uvi}</p>
+      <p className="text-blue-400">{data?.pop}%</p>
+      <p className="text-blue-400">{data?.rain ? data.rain["1h"] || 0 : 0}mm</p>
+      <p className="text-blue-400">{data?.humidity}</p>
+      <p className="text-amber-400">{data?.uvi}</p>
       <p>{data?.clouds}</p>
     </div>
   );

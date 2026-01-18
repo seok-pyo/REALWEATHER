@@ -19,12 +19,12 @@ export function WeatherFavorite({ item }: Props) {
   const { removeFavorite, updateFavoriteAlias } = useFavoriteStore();
   const [placeAlias, setPlaceAlias] = useState(item.alias || "");
   const [isEditing, setIsEditing] = useState(false);
-  const { setToggle } = useToggleStore();
+  const { setCloseToggle } = useToggleStore();
 
   const { data: weather, isLoading } = useGetWeather(item.lat, item.lon);
   const handleCardClick = () => {
     setCoords(item.lat, item.lon);
-    setToggle();
+    setCloseToggle(true);
   };
 
   const handleRemove = (e: React.MouseEvent) => {
@@ -79,12 +79,15 @@ export function WeatherFavorite({ item }: Props) {
             className="truncate max-w-25 bg-transparent border-b border-zinc-600 outline-none"
           />
         ) : (
-          <p className="truncate max-w-25" onClick={handleNameClick}>
+          <p
+            className="truncate max-w-25 font-bold text-zinc-800"
+            onClick={handleNameClick}
+          >
             {placeAlias || `${favoritePlace[1]} ${favoritePlace[2]}`}
           </p>
         )}
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-6 md:-mt-3">
         {weather?.current.weather[0]?.icon ? (
           <img
             src={`https://openweathermap.org/img/wn/${weather?.current.weather[0].icon}.png`}
@@ -93,19 +96,28 @@ export function WeatherFavorite({ item }: Props) {
         ) : (
           <div className="w-12 h-12 bg-zinc-500 rounded-full flex items-center justify-center"></div>
         )}
-        <div className="flex md:flex-col gap-4 md:gap-0">
-          <p>{weather?.current.temp.toFixed(1)}</p>
-          <p>{weather?.current.weather[0].main}</p>
+        <div className="flex md:flex-col gap-4 md:gap-0 items-center">
+          <p className="text-2xl font-bold">
+            {weather?.current.temp.toFixed(1)}°
+          </p>
+          <p className="text-zinc-600">{weather?.current.weather[0].main}</p>
         </div>
       </div>
-      <div className="flex gap-4" onClick={handleCardClick}>
-        <div className="md:flex hidden flex-col items-center">
-          <p>최저</p>
-          <p>{weather?.daily[0].temp.min.toFixed(1)}°</p>
+      <div
+        className="flex gap-y-0 gap-x-2 md:-mt-2 specific-range"
+        onClick={handleCardClick}
+      >
+        <div className="md:flex hidden items-center gap-2">
+          <p className="text-zinc-700 font-bold whitespace-nowrap">최저</p>
+          <p className="text-red-500">
+            {weather?.daily[0].temp.min.toFixed(1)}°
+          </p>
         </div>
-        <div className="md:flex hidden flex-col items-center">
-          <p>최고</p>
-          <p>{weather?.daily[0].temp.max.toFixed(1)}°</p>
+        <div className="md:flex hidden items-center gap-2">
+          <p className="text-zinc-700 font-bold whitespace-nowrap">최고</p>
+          <p className="text-blue-500">
+            {weather?.daily[0].temp.max.toFixed(1)}°
+          </p>
         </div>
       </div>
     </div>

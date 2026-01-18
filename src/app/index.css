@@ -11,3 +11,9 @@ body {
     display: none;
   }
 }
+
+@media (min-width: 1024px) and (max-width: 1124px) {
+  .specific-range {
+    flex-direction: column;
+  }
+}

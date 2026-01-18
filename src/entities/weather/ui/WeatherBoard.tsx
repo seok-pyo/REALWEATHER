@@ -61,31 +61,41 @@ export function WeatherBoard({
           ) : (
             <div className="w-30 h-30 bg-zinc-700 rounded-full flex items-center justify-center"></div>
           )}
-          <div className="flex flex-col justify-center items-center gap-2 whitespace-nowrap">
-            <p className="text-4xl">{data?.current.temp.toFixed(1)}°</p>
-            <p className="text-2xl pl-2">{data?.current.weather[0].main}</p>
+          <div className="flex flex-col justify-center items-center gap-2 whitespace-nowrap pl-4">
+            <p className="text-4xl font-bold text-zinc-200">
+              {data?.current.temp.toFixed(1)}°
+            </p>
+            <p className="text-2xl">{data?.current.weather[0].main}</p>
           </div>
         </div>
         <div className="flex gap-8 items-center whitespace-nowrap">
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center gap-2">
             <p>체감</p>
             <p>{data?.current.feels_like.toFixed(1)}°</p>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center gap-2">
             <p>최저</p>
-            <p>{data?.daily[0].temp.min.toFixed(1)}°</p>
+            <p className="text-blue-400">
+              {data?.daily[0].temp.min.toFixed(1)}°
+            </p>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center gap-2">
             <p>최고</p>
-            <p>{data?.daily[0].temp.max.toFixed(1)}°</p>
+            <p className="text-red-400">
+              {data?.daily[0].temp.max.toFixed(1)}°
+            </p>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center gap-2">
             <p>일출</p>
-            <p>{unixToLocal(data?.daily[0].sunrise || 0)}</p>
+            <p className="text-amber-400">
+              {unixToLocal(data?.daily[0].sunrise || 0)}
+            </p>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center gap-2">
             <p>일몰</p>
-            <p>{unixToLocal(data?.daily[0].sunset || 0)}</p>
+            <p className="text-amber-400">
+              {unixToLocal(data?.daily[0].sunset || 0)}
+            </p>
           </div>
         </div>
       </div>

@@ -58,7 +58,6 @@ export function TimeBoard() {
         <h1 className="text-zinc-600">데이터를 불러오고 있습니다</h1>
       )}
       <div className="flex gap-8 mt-2 md:mt-2 relative overflow-hidden">
-        {/* <div className="hidden absolute top-1/2 -translate-y-1/2 items-center md:flex justify-between w-9/10 pr-12 left-20"> */}
         <div className="absolute top-1/2 -translate-y-1/2 items-center flex justify-between w-9/10 pr-12 left-20">
           <img
             className="w-5"
@@ -72,12 +71,12 @@ export function TimeBoard() {
           />
         </div>
         <div className="flex flex-col gap-4 whitespace-nowrap">
-          <p className="pb-40">오늘</p>
-          <p>강수확률</p>
-          <p>강수량</p>
-          <p>습도</p>
-          <p>자외선지수</p>
-          <p>구름</p>
+          <p className="pb-40 text-zinc-300">오늘</p>
+          <p className="text-zinc-300">강수확률</p>
+          <p className="text-zinc-300">강수량</p>
+          <p className="text-zinc-300">습도</p>
+          <p className="text-zinc-300">자외선지수</p>
+          <p className="text-zinc-300">구름</p>
         </div>
         <div
           className="flex overflow-auto w-4/5 gap-8 scrollbar-hide"

@@ -46,6 +46,9 @@ export function Search() {
   return (
     <div className="relative flex w-full md:w-72 items-center">
       <input
+        id="searchInput"
+        autoComplete="off"
+        autoCorrect="off"
         value={keyword}
         onChange={handleInput}
         onClick={handleClick}
@@ -55,7 +58,11 @@ export function Search() {
       {isOpen ? (
         <div className="flex flex-col inset-0 z-200 bg-zinc-700 fixed md:w-72 md:h-96 md:top-[50%] md:rounded-b-3xl md:absolute">
           <input
+            autoComplete="off"
+            autoCorrect="off"
+            id="searchInputOpen"
             value={keyword}
+            onClick={handleClick}
             onChange={handleInput}
             placeholder="장소를 입력해 주세요"
             className="h-14 pt-10 placeholder:text-zinc-400 pl-10 outline-none text-zinc-300 md:hidden"
