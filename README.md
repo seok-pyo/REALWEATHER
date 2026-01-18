@@ -92,6 +92,16 @@ open api는 '기상청 단기예보 조회서비스'를 이용한다.
 - 검색된 지역들을 선택하는 방식. 클로저
 - onClick({handlePlace(item)}) / onClick({() => handlePlace(item)})
 
+고민11.
+
+- vercel serverless function 요청 시 국가별 위치에 따른 제한.
+-
+
+고민11.
+
+- ScrollLeft API를 이용한 시간별 날씨 위젯의 가로스크롤 구현
+- CurrentTarget API
+
 API 호출 데이터 흐름 정리
 
 1. 웹에 처음 접근했을 때

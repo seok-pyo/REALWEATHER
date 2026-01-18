@@ -7,10 +7,10 @@ interface Props {
 
 export function WeatherTime({ data }: Props) {
   return (
-    <div className="flex flex-col gap-4 whitespace-nowrap">
+    <div className="flex flex-col gap-4 whitespace-nowrap items-center">
       <p>{unixToLocal(data?.dt || 0)}</p>
 
-      <div className="mt-8 mb-8 flex flex-col gap-4 w-10">
+      <div className="mt-8 mb-8 flex flex-col gap-4 w-10 items-center">
         {data?.weather[0]?.icon ? (
           <img
             src={`https://openweathermap.org/img/wn/${data?.weather[0].icon}.png`}

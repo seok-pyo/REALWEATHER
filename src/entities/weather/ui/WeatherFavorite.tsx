@@ -85,6 +85,7 @@ export function WeatherFavorite({ item }: Props) {
         {weather?.current.weather[0]?.icon ? (
           <img
             src={`https://openweathermap.org/img/wn/${weather?.current.weather[0].icon}.png`}
+            className="hidden md:block"
           />
         ) : (
           <div className="w-12 h-12 bg-zinc-500 rounded-full flex items-center justify-center"></div>
@@ -95,11 +96,11 @@ export function WeatherFavorite({ item }: Props) {
         </div>
       </div>
       <div className="flex gap-4">
-        <div className="flex flex-col md:flex-row items-center">
+        <div className="md:flex hidden flex-col items-center">
           <p>최저</p>
           <p>{weather?.daily[0].temp.min.toFixed(1)}°</p>
         </div>
-        <div className="flex flex-col md:flex-row items-center">
+        <div className="md:flex hidden flex-col items-center">
           <p>최고</p>
           <p>{weather?.daily[0].temp.max.toFixed(1)}°</p>
         </div>
