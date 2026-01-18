@@ -1,16 +1,18 @@
 # REALWEATHER
 
-#### REALWEATHER는 위치 기반으로 날씨 예보를 받아오는 서비스입니다. 원하는 지역의 날씨예보를 확인할 수 있습니다.
+### REALWEATHER는 위치 기반으로 날씨 예보를 받아오는 서비스입니다. 원하는 지역의 날씨를 확인할 수 있습니다.
 
+<br>
 ![](./images/preview.png)
 
-[배포 링크](https://realweather-weld.vercel.app/)
+- [배포 링크](https://realweather-weld.vercel.app/)
+- [디자인 시안](https://www.figma.com/design/VaAxemBOOKLVBA1ld0EojD/RealWheather?node-id=0-1&t=Yaqg7R3y3sHxpAnn-1)
 
-[디자인 시안](https://www.figma.com/design/VaAxemBOOKLVBA1ld0EojD/RealWheather?node-id=0-1&t=Yaqg7R3y3sHxpAnn-1)
+<br>
 
 ## 프로젝트 실행 방법
 
-1. [GitRepository](https://github.com/seok-pyo/REALWEATHER)에서 저장소를 클론을 받습니다.
+1. 저장소를 클론을 받습니다.
 2. 2곳의 API를 사용합니다. 해당 API 키를 발급받습니다.
 
 - [OpenWeatherAPI](https://openweathermap.org/api/one-call-3#start) : 날씨 정보 API - `OPENWEATHER_API_KEY` 변수 사용
@@ -23,7 +25,9 @@ GEO_API_KEY=your_key_here
 
 3. 프로젝트 루트 디렉토리에 `.env.local` 파일을 생성하고, `OPENWEATHER_API_KEY`, `GEO_API_KEY` 변수명으로 각각의 API를 저장합니다.
 4. `npm install`을 실행합니다.
-5. 루트 디렉토리에서 터미널에 `vercel dev`를 입력합니다.
+5. 루트 디렉토리에서 터미널에 `vercel dev`를 실행합니다.
+
+<br>
 
 ## 구현한 기능에 대한 설명
 
@@ -51,6 +55,8 @@ GEO_API_KEY=your_key_here
 - `날씨 카드`의 지역명을 눌러 원하는 이름으로 수정할 수 있습니다.
 - 최대로 저장 가능한 개수(6개)와 현재 저장된 카드의 개수가 보여집니다.
 
+<br>
+
 ## 기술적 의사결정 및 이유
 
 ### API 선택 이유
@@ -66,7 +72,7 @@ GEO_API_KEY=your_key_here
 - 프로젝트의 규모가 크지 않고, 앱의 페이지가 `단일 페이지`라는 점.
 - `seo` 최적화가 필요하지 않다는 점.
 - API 키를 보호하기 위한, 프록시 서버는 `vercel`의 `serverless function`으로 구현이 가능하다는 점.
-- 과제를 구현하면서 SSR과 CSR의 실질적인 렌더링 속도 차이가 궁금해져서 next.js로 포팅하여 `렌더링의 속도`의 차이를 확인해봐야 겠다는 생각을 하였습니다.
+- 과제를 구현하면서 SSR과 CSR의 실질적인 렌더링 속도 차이가 궁금해져, next.js로 포팅하여 `렌더링의 속도`의 차이를 확인해봐야 겠다는 생각을 하였습니다.
 
 ### FSD 아키텍쳐
 
@@ -80,7 +86,7 @@ GEO_API_KEY=your_key_here
 
 ### 검색 기능
 
-- json 파일을 로컬로 다운로드 받는 것이 고민이 되어 DB를 구축하는 것도 고려하였지만, 전체 프로젝트의 완성도를 위하여 json 방식으로 검색을 구현하였습니다.
+- json 파일을 로컬로 다운로드 받는 것이 고민이 되어 DB를 구축하는 것도 고려하였지만, 기한을 고려하여 전체 프로젝트의 완성도를 위하여 json 방식으로 검색을 구현하였습니다.
 - 검색 기능을 구현하기 위해, 제공된 json 파일을 `features` 슬라이스에 저장하여 `DB`로 사용하였습니다. `filter`와 `includes`를 사용하여 키워드를 찾아내는 커스텀 훅을 만들어 사용하였습니다.
 - 입력된 단어들을 `tanstackQuery`를 통해 검색어를 캐싱하여 불필요한 API 호출을 방지하였습니다.
 - 선택된 지역명은 좌표로 변환되어 `전역상태`로 저장하게 됩니다. 이 상태는 `zustand`로 구현하였으며, `현재 날씨 정보`, `시간별 날씨 정보`, 컴포넌트에서 구독하여 해당 값들의 변경을 감지하게 됩니다.
@@ -90,25 +96,30 @@ GEO_API_KEY=your_key_here
 - 효율적인 API 호출과 편리하게 상태를 활용하기 위하여 `tanstack query`를 사용하였습니다.
 - 검색 시 입력된 단어들은 쿼리가 캐싱되어 불필요한 API 호출을 방지할 수 있었습니다.
 
-### zustand
+### Zustand
 
 - 복잡한 상태들을 관리하고, `props drilling`을 방지하기 위해 `zustand`를 사용하였습니다.
 - 반응형 디자인 구현에 필요한 `모바일 UI의 상태` 관리
 - API 호출을 중복으로 하지 않기 위한 `좌표 데이터` 관리
 - `현재 날씨` 위젯과 `즐겨찾기` 위젯에서 공유하는 상태 관리
 
-### vercel 선택 이유
+### Vercel 선택 이유
 
 - API Key의 보안을 위해서 프록시 서버를 두는 것이 나을 것 같다는 판단을 하였습니다.
 - 프로젝트에 필요한 API 중 좌표 변환 API는 클라이언트에서 호출할 경우, 응답을 받지 못하는 것을 확인하였습니다. 따라서, 서버의 구축이 필요하였고 vercel의 serverless 함수를 이용하기로 하였습니다.
 - 배포 또한 간편하여 `GitHub`와의 연동을 통해 편리하게 할 수 있다는 것도 선택하게 된 이유입니다.
 
+<br>
+
 ## 트러블 슈팅
 
 ### API 타입 최적화
 
-문제: OpenWeatherAPI에서 `current`, `daily`, `hourly` 데이터를 모두 받아오면서 타입 관리가 복잡해짐.
-해결: 제네릭을 사용하여, 공통 속성인 `temp`의 데이터를 통일
+문제:
+
+- OpenWeatherAPI에서 `current`, `daily`, `hourly` 데이터를 모두 받아오면서 타입 관리가 복잡해짐.
+  해결:
+- 제네릭을 사용하여, 공통 속성인 `temp`의 데이터를 통일
 
 ### 모바일 뷰 즐겨찾기 UX 구현
 
@@ -116,11 +127,17 @@ GEO_API_KEY=your_key_here
 
 - 즐겨찾기 카드 클릭 시 모바일 뷰의 위젯을 닫는 기능이 필요
 - 컴포넌트의 깊이가 깊어지면서 Propsdrilling 발생. MainPage - FavoriteList - WeatherFavorite(3단계)
-  해결: toggle 상태를 zustand 전역 상태로 변경하여, WeatherFavorite에서 직접 접근할 수 있도록 구현
+
+해결:
+
+- toggle 상태를 zustand 전역 상태로 변경하여, WeatherFavorite에서 직접 접근할 수 있도록 구현
 
 ### 검색 실패 시 UI 구현
 
-문제: 좌표 변환 실패 또는 API 응답이 없음을 보여주는 UI 필요
+문제:
+
+- 좌표 변환 실패 또는 API 응답이 없음을 보여주는 UI 필요
+
 해결:
 
 - 검색 화면에서 데이터를 못 받아올 경우 메시지를 보여주기 위해, closeSearch를 useCallback으로 캐싱하고, useEffct 안에서 좌표값이 제대로 들어오지 않으면 닫히지 않도록 구현.
@@ -129,8 +146,15 @@ GEO_API_KEY=your_key_here
 
 ### Vercel serverless 함수 요청 지역 변경
 
-문제: `Geocoder API 2.0` 호출 시 정상적으로 vercel에 환경변수를 등록했으나, 응답 오류가 발생.
-해결: `Geocoder API`는 `한국`에서 요청하지 않은 호출은 응답 오류를 발생시킴. vercel serverless 함수가 실행되는 지역(region)을 `icn1` 한국 지역으로 변경.
+문제:
+
+- `Geocoder API 2.0` 호출 시 정상적으로 vercel에 환경변수를 등록했으나, 응답 오류가 발생.
+
+해결:
+
+- `Geocoder API`는 `한국`에서 요청하지 않은 호출은 응답 오류를 발생시킴. vercel serverless 함수가 실행되는 지역(region)을 `icn1` 한국 지역으로 변경.
+
+<br>
 
 ## 사용한 기술 스택
 
