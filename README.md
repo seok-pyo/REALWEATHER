@@ -13,7 +13,7 @@ REALWEATHER는 위치 기반으로 날씨 예보를 받아오는 서비스입니
 
 ## 프로젝트 실행 방법
 
-1. 레포지토리를 클론을 받습니다.
+1. 레포지토리를 클론합니다.
 2. 2곳의 API를 사용합니다. 해당 API 키를 발급받습니다.
 
 - [OpenWeatherAPI](https://openweathermap.org/api/one-call-3#start) : 날씨 정보 API - `OPENWEATHER_API_KEY` 변수 사용
@@ -21,13 +21,17 @@ REALWEATHER는 위치 기반으로 날씨 예보를 받아오는 서비스입니
 
 3. 프로젝트 루트 디렉토리에 `.env.local` 파일을 생성하고, `OPENWEATHER_API_KEY`, `GEO_API_KEY` 변수명으로 각각의 API를 저장합니다.
 
-```
+```env
 OPENWEATHER_API_KEY=your_key_here
 GEO_API_KEY=your_key_here
 ```
+4. 실행
 
-4. `npm install`을 실행합니다.
-5. 루트 디렉토리에서 터미널에 `vercel dev`를 실행합니다.
+```
+npm install
+npm i -g vercel
+vercel dev
+```
 
 <br>
 
