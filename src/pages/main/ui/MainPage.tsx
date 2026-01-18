@@ -1,26 +1,26 @@
 import { useToggleStore } from "@/shared/store/useToggleStore";
 import { CurrentBoard, Header, TimeBoard } from "@/widgets";
 import { FavoriteList } from "@/widgets";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 export function MainPage() {
   const { isToggle, setToggle } = useToggleStore();
 
   // 모바일 화면 스크롤 방지
-  useEffect(() => {
-    if (!isToggle) {
-      const scrollY = window.scrollY;
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}`;
-      document.body.style.width = "100%";
-    } else {
-      const scollY = document.body.style.top;
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      window.scrollTo(0, parseInt(scollY || "0") * -1);
-    }
-  }, [isToggle]);
+  // useEffect(() => {
+  //   if (!isToggle) {
+  //     const scrollY = window.scrollY;
+  //     document.body.style.position = "fixed";
+  //     document.body.style.top = `-${scrollY}`;
+  //     document.body.style.width = "100%";
+  //   } else {
+  //     const scollY = document.body.style.top;
+  //     document.body.style.position = "";
+  //     document.body.style.top = "";
+  //     document.body.style.width = "";
+  //     window.scrollTo(0, parseInt(scollY || "0") * -1);
+  //   }
+  // }, [isToggle]);
 
   return (
     <div

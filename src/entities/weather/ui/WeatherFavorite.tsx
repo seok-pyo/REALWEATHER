@@ -87,7 +87,7 @@ export function WeatherFavorite({ item }: Props) {
           </p>
         )}
       </div>
-      <div className="flex gap-6 md:-mt-3">
+      <div className="flex gap-2 md:-mt-3">
         {weather?.current.weather[0]?.icon ? (
           <img
             src={`https://openweathermap.org/img/wn/${weather?.current.weather[0].icon}.png`}
