@@ -4,7 +4,7 @@ import { GetCurrentLocation } from "@/widgets/current-board/api";
 import type { WeatherItem } from "@/entities/weather/model";
 import ArrowLeft from "@/shared/assets/arrow-left.svg";
 import ArrowRight from "@/shared/assets/arrow-right.svg";
-import { getCityName } from "@/entities/weather/api/shared/getCityName";
+import { formatCityName } from "@/shared/utilities/formatCityName";
 import { useLocationStore } from "@/shared/store/useLocationStore";
 import { useEffect, useRef } from "react";
 import { useFavoriteStore } from "@/shared/store/useFavoriteStore";
@@ -27,7 +27,7 @@ export function TimeBoard() {
   const currentFavorite = favorites.find((f) => f.lat === lat && f.lon === lon);
   const nickName = currentFavorite?.alias;
 
-  const formattedTitle = location ? getCityName(location) : "";
+  const formattedTitle = location ? formatCityName(location) : "";
   const boardTitle = location ? formattedTitle.split(" ")[1] : "";
 
   const handleScroll = (direc: "left" | "right") => {
