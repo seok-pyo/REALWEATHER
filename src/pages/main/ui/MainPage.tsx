@@ -1,12 +1,28 @@
 import { CurrentBoard, Header, TimeBoard } from "@/widgets";
 import { FavoriteList } from "@/widgets";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function MainPage() {
   const [toggle, setToggle] = useState(true);
   const toggleFavorite = () => {
     setToggle((prev) => !prev);
   };
+
+  // 모바일 화면 스크롤 방지
+  useEffect(() => {
+    if (!toggle) {
+      const scrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}`;
+      document.body.style.width = "100%";
+    } else {
+      const scollY = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      window.scrollTo(0, parseInt(scollY || "0") * -1);
+    }
+  }, [toggle]);
 
   return (
     <div
