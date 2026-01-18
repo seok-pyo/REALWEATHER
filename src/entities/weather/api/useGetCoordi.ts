@@ -10,6 +10,10 @@ export const getCoordi = async (place: string) => {
     return data.response.result.point;
   }
 
+  if (data.response?.status === "NOT_FOUND") {
+    throw new Error("no coordi");
+  }
+
   return null;
 };
 

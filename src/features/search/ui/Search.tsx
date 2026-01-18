@@ -10,14 +10,15 @@ export function Search() {
   const [results, setResults] = useState<string[]>([]);
   const [selectAddress, setSelectAddress] = useState("");
 
-  const { data: coords } = useGetCoordi(selectAddress);
+  const { data: coords, isError, isLoading } = useGetCoordi(selectAddress);
   const { setCoords } = useLocationStore();
 
   useEffect(() => {
     if (coords) {
       setCoords(Number(coords.y), Number(coords.x));
+      closeSearch();
     }
-  }, [coords, setCoords]);
+  }, [coords, setCoords, closeSearch]);
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -32,7 +33,6 @@ export function Search() {
     setSelectAddress(formatPlace);
     setKeyword("");
     setResults([]);
-    closeSearch();
   };
 
   const handleClick = () => {
@@ -54,6 +54,7 @@ export function Search() {
       {isOpen ? (
         <div className="flex flex-col inset-0 z-200 bg-zinc-700 fixed md:w-72 md:h-96 md:top-[50%] md:rounded-b-3xl md:absolute">
           <input
+            value={keyword}
             onChange={handleInput}
             placeholder="장소를 입력해 주세요"
             className="h-14 pt-10 placeholder:text-zinc-400 pl-10 outline-none text-zinc-300 md:hidden"
@@ -72,11 +73,18 @@ export function Search() {
             </ul>
           ) : (
             <div className="flex-1 flex items-center justify-center text-zinc-400 text-sm">
-              {isEmpty ? (
-                ""
-              ) : (
+              {/* {isEmpty || (isError && selectAddress) ? (
                 <p className="">해당 장소의 정보가 제공되지 않습니다.</p>
+              ) : (
+                ""
+              )} */}
+              {isLoading ? <p>날씨를 가져오고 있습니다</p> : ""}
+              {isError && selectAddress && (
+                <p className="text-amber-400">
+                  해당 장소의 정보가 제공되지 않습니다
+                </p>
               )}
+              {!isEmpty && !isError && <p>검색 결과가 없습니다</p>}
             </div>
           )}
           <button
