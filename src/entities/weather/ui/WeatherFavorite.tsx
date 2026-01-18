@@ -98,7 +98,7 @@ export function WeatherFavorite({ item }: Props) {
           <p>{weather?.current.weather[0].main}</p>
         </div>
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-4" onClick={handleCardClick}>
         <div className="md:flex hidden flex-col items-center">
           <p>최저</p>
           <p>{weather?.daily[0].temp.min.toFixed(1)}°</p>
