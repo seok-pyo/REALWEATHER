@@ -1,5 +1,5 @@
 import SearchIcon from "@/shared/assets/search.svg";
-import { filterPlace, useSearch } from "../model/useSearch";
+import { filterPlace, useSearch } from "@/features/search/model";
 import { useEffect, useState, type ChangeEvent } from "react";
 import { useGetCoordi } from "@/entities/weather/api/useGetCoordi";
 import { useLocationStore } from "@/shared/store/useLocationStore";

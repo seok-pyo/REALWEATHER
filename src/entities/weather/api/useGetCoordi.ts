@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-export const getCoordi = async (place: string) => {
+const getCoordi = async (place: string) => {
   const response = await fetch(`/api/nameChange?place=${place}`);
 
   if (!response.ok) throw new Error("주소를 좌표로 변환하는데 실패하였습니다");

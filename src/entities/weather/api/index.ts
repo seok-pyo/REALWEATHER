@@ -1,3 +1,3 @@
 export * from "./useGetCityName";
 export * from "./useGetWeather";
-export * from "./unixToLocal";
+export { unixToLocal } from "./unixToLocal";

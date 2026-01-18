@@ -1,8 +1,8 @@
-import type { LocationResult } from "../model/location";
-import type { WeatherData } from "../model/types";
+import type { LocationResult } from "@/entities/weather/model";
+import type { WeatherData } from "@/entities/weather/model";
 import StarIcon from "@/shared/assets/star.svg";
 import StraIconFavorite from "@/shared/assets/star-favorite.svg";
-import { unixToLocal } from "../api";
+import { unixToLocal } from "@/entities/weather/api";
 
 interface Props {
   data?: WeatherData;

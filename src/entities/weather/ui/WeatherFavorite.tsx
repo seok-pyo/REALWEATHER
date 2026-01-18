@@ -1,5 +1,5 @@
 import StarIcon from "@/shared/assets/star-favorite.svg";
-import { useGetWeather } from "../api";
+import { useGetWeather } from "@/entities/weather/api";
 import { useLocationStore } from "@/shared/store/useLocationStore";
 import { useFavoriteStore } from "@/shared/store/useFavoriteStore";
 import { useState } from "react";

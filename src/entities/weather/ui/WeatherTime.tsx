@@ -1,5 +1,5 @@
-import type { WeatherItem } from "../model";
-import { unixToLocal } from "../api";
+import type { WeatherItem } from "@/entities/weather/model";
+import { unixToLocal } from "@/entities/weather/api";
 
 interface Props {
   data?: WeatherItem<number>;

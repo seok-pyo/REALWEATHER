@@ -1,6 +1,6 @@
 import { useGetCityName, useGetWeather } from "@/entities/weather/api";
 import { WeatherTime } from "@/entities/weather/ui/WeatherTime";
-import { GetCurrentLocation } from "../current-board/api/GetCurrentLocation";
+import { GetCurrentLocation } from "@/widgets/current-board/api";
 import type { WeatherItem } from "@/entities/weather/model";
 import ArrowLeft from "@/shared/assets/arrow-left.svg";
 import ArrowRight from "@/shared/assets/arrow-right.svg";

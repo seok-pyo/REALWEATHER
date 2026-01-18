@@ -1,4 +1,4 @@
-import type { LocationResult } from "../../model";
+import type { LocationResult } from "@/entities/weather/model";
 
 export function getCityName(location?: LocationResult) {
   const cityName = `${location?.structure.level2} ${
