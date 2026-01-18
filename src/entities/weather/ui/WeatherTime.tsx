@@ -21,7 +21,6 @@ export function WeatherTime({ data }: Props) {
         <p>{data?.temp.toFixed(1)}°</p>
       </div>
       <p>{data?.pop}%</p>
-      {/* <p>{data.data?.pop ? data.data?.rain : 0}mm</p> */}
       <p>{data?.rain ? data.rain["1h"] || 0 : 0}mm</p>
       <p>{data?.humidity}</p>
       <p>{data?.uvi}</p>

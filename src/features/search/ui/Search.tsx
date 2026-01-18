@@ -6,7 +6,6 @@ import { useLocationStore } from "@/shared/store/useLocationStore";
 
 export function Search() {
   const { isOpen, toggleSearch, closeSearch } = useSearch();
-  // const inputRef = useRef<HTMLInputElement | null>(null);
   const [keyword, setKeyword] = useState("");
   const [results, setResults] = useState<string[]>([]);
   const [selectAddress, setSelectAddress] = useState("");
@@ -30,9 +29,9 @@ export function Search() {
 
   const handlePlace = (place: string) => {
     const formatPlace = place.split("-").join(" ");
-    setKeyword(formatPlace);
     setSelectAddress(formatPlace);
     setKeyword("");
+    setResults([]);
     closeSearch();
   };
 
@@ -46,7 +45,6 @@ export function Search() {
   return (
     <div className="relative flex w-full md:w-72 items-center">
       <input
-        // ref={inputRef}
         value={keyword}
         onChange={handleInput}
         onClick={toggleSearch}
@@ -60,7 +58,6 @@ export function Search() {
             placeholder="장소를 입력해 주세요"
             className="h-14 pt-10 placeholder:text-zinc-400 pl-10 outline-none text-zinc-300 md:hidden"
           />
-          {/* <p className="mt-8 ml-10 md:ml-4 h-7 text-zinc-500">최근 검색</p> */}
           {hasResults ? (
             <ul className="z-1200 mt-8 text-zinc-300 ml-10 md:ml-4 flex flex-col gap-2 overflow-y-auto scrollbar-hide">
               {results.map((item, idx) => (
@@ -82,11 +79,8 @@ export function Search() {
               )}
             </div>
           )}
-          <div className="flex-1 flex items-center justify-center text-zinc-400">
-            {/* <p className="">최근 검색어가 없습니다</p> */}
-          </div>
           <button
-            className="mb-10 self-end mr-10 md:mb-4 md:mr-4 text-zinc-400"
+            className="absolute bottom-10 right-10 md:bottom-4 md:right-4 text-zinc-400"
             onClick={closeSearch}
           >
             닫기

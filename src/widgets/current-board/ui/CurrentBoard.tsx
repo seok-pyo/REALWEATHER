@@ -31,7 +31,7 @@ export function CurrentBoard() {
 
     if (favorited) {
       removeFavorite(currentAddress);
-    } else {
+    } else if (favorites.length < 6) {
       addFavorite({
         address: currentAddress,
         lat,
