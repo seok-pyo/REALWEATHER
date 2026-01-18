@@ -3,6 +3,7 @@ import type { WeatherData } from "@/entities/weather/model";
 import StarIcon from "@/shared/assets/star.svg";
 import StraIconFavorite from "@/shared/assets/star-favorite.svg";
 import { unixToLocal } from "@/entities/weather/api";
+import { formatIconUrl } from "@/shared";
 
 interface Props {
   data?: WeatherData;
@@ -56,7 +57,7 @@ export function WeatherBoard({
           {data?.current.weather[0]?.icon ? (
             <img
               className="shrink-0 w-30 h-30"
-              src={`https://openweathermap.org/img/wn/${data?.current.weather[0].icon}@4x.png`}
+              src={formatIconUrl(data?.current.weather[0].icon, "@4x")}
             />
           ) : (
             <div className="w-30 h-30 bg-zinc-700 rounded-full flex items-center justify-center"></div>

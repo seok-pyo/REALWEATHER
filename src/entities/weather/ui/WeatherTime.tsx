@@ -1,5 +1,6 @@
 import type { WeatherItem } from "@/entities/weather/model";
 import { unixToLocal } from "@/entities/weather/api";
+import { formatIconUrl } from "@/shared";
 
 interface Props {
   data?: WeatherItem<number>;
@@ -12,9 +13,7 @@ export function WeatherTime({ data }: Props) {
 
       <div className="mt-8 mb-8 flex flex-col gap-4 w-10 items-center">
         {data?.weather[0]?.icon ? (
-          <img
-            src={`https://openweathermap.org/img/wn/${data?.weather[0].icon}.png`}
-          />
+          <img src={formatIconUrl(data?.weather[0].icon)} />
         ) : (
           <div className="w-10 h-10 bg-zinc-700 rounded-full flex items-center justify-center"></div>
         )}

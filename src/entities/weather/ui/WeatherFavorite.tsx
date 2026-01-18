@@ -4,6 +4,7 @@ import { useLocationStore } from "@/shared/store/useLocationStore";
 import { useFavoriteStore } from "@/shared/store/useFavoriteStore";
 import { useState } from "react";
 import { useToggleStore } from "@/shared/store/useToggleStore";
+import { formatIconUrl } from "@/shared";
 
 interface Props {
   item: {
@@ -90,7 +91,7 @@ export function WeatherFavorite({ item }: Props) {
       <div className="flex gap-2 md:-mt-3">
         {weather?.current.weather[0]?.icon ? (
           <img
-            src={`https://openweathermap.org/img/wn/${weather?.current.weather[0].icon}.png`}
+            src={formatIconUrl(weather?.current.weather[0].icon)}
             className="hidden md:block"
           />
         ) : (
