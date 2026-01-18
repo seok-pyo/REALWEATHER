@@ -57,7 +57,7 @@ export function TimeBoard() {
       ) : (
         <h1 className="text-zinc-600">데이터를 불러오고 있습니다</h1>
       )}
-      <div className="flex gap-8 mt-2 md:mt-2 relative">
+      <div className="flex gap-8 mt-2 md:mt-2 relative overflow-hidden">
         {/* <div className="hidden absolute top-1/2 -translate-y-1/2 items-center md:flex justify-between w-9/10 pr-12 left-20"> */}
         <div className="absolute top-1/2 -translate-y-1/2 items-center flex justify-between w-9/10 pr-12 left-20">
           <img

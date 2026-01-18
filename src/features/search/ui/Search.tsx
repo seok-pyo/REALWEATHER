@@ -37,6 +37,7 @@ export function Search() {
 
   const handleClick = () => {
     if (!isOpen) toggleSearch();
+    setSelectAddress("");
   };
 
   const isEmpty = keyword.trim().length === 0;
@@ -47,7 +48,7 @@ export function Search() {
       <input
         value={keyword}
         onChange={handleInput}
-        onClick={toggleSearch}
+        onClick={handleClick}
         placeholder="장소를 입력해 주세요"
         className="z-1000 w-full hidden md:block bg-zinc-700 h-12 md:w-72 rounded-3xl placeholder:text-zinc-400 pl-4 outline-none text-zinc-300"
       />
@@ -73,11 +74,6 @@ export function Search() {
             </ul>
           ) : (
             <div className="flex-1 flex items-center justify-center text-zinc-400 text-sm">
-              {/* {isEmpty || (isError && selectAddress) ? (
-                <p className="">해당 장소의 정보가 제공되지 않습니다.</p>
-              ) : (
-                ""
-              )} */}
               {isLoading ? <p>날씨를 가져오고 있습니다</p> : ""}
               {isError && selectAddress && (
                 <p className="text-amber-400">
