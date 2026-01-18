@@ -3,6 +3,7 @@
 ### REALWEATHER는 위치 기반으로 날씨 예보를 받아오는 서비스입니다. 원하는 지역의 날씨를 확인할 수 있습니다.
 
 <br>
+
 ![](./images/preview.png)
 
 - [배포 링크](https://realweather-weld.vercel.app/)
@@ -18,12 +19,13 @@
 - [OpenWeatherAPI](https://openweathermap.org/api/one-call-3#start) : 날씨 정보 API - `OPENWEATHER_API_KEY` 변수 사용
 - [Geocoder API 2.0](https://www.vworld.kr/dev/v4dv_geocoderguide2_s001.do) : 주소를 좌표로 변환하는 API - `GEO_API_KEY`변수 사용
 
+3. 프로젝트 루트 디렉토리에 `.env.local` 파일을 생성하고, `OPENWEATHER_API_KEY`, `GEO_API_KEY` 변수명으로 각각의 API를 저장합니다.
+
 ```
 OPENWEATHER_API_KEY=your_key_here
 GEO_API_KEY=your_key_here
 ```
 
-3. 프로젝트 루트 디렉토리에 `.env.local` 파일을 생성하고, `OPENWEATHER_API_KEY`, `GEO_API_KEY` 변수명으로 각각의 API를 저장합니다.
 4. `npm install`을 실행합니다.
 5. 루트 디렉토리에서 터미널에 `vercel dev`를 실행합니다.
 
