@@ -100,6 +100,12 @@ open api는 '기상청 단기예보 조회서비스'를 이용한다.
 
 - ScrollLeft API를 이용한 시간별 날씨 위젯의 가로스크롤 구현
 
+고민 12.
+
+- 모바일 뷰에서 '즐겨찾기'를 열고, 카드를 눌렀을 때, '즐겨찾기'가 닫히면서 메인 화면에 해당 카드의 날씨 정보가 나오도록 구현
+- MainPage - FavoriteList - WeatherFavorite 자식 방향으로 구현, toggle 상태는 'MainPage'에 위치.
+- 해당 기능을 구현하기 위해서는 상태 변경이 WeatherFavorite에서 실행되어야 하므로, props 단계가 한 단계 더 깊어짐. 따라서, toggle 상태를 전역 상태로 변경.
+
 API 호출 데이터 흐름 정리
 
 1. 웹에 처음 접근했을 때

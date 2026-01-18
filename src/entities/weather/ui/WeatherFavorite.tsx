@@ -3,6 +3,7 @@ import { useGetWeather } from "../api";
 import { useLocationStore } from "@/shared/store/useLocationStore";
 import { useFavoriteStore } from "@/shared/store/useFavoriteStore";
 import { useState } from "react";
+import { useToggleStore } from "@/shared/store/useToggleStore";
 
 interface Props {
   item: {
@@ -18,10 +19,12 @@ export function WeatherFavorite({ item }: Props) {
   const { removeFavorite, updateFavoriteAlias } = useFavoriteStore();
   const [placeAlias, setPlaceAlias] = useState(item.alias || "");
   const [isEditing, setIsEditing] = useState(false);
+  const { setToggle } = useToggleStore();
 
   const { data: weather, isLoading } = useGetWeather(item.lat, item.lon);
   const handleCardClick = () => {
     setCoords(item.lat, item.lon);
+    setToggle();
   };
 
   const handleRemove = (e: React.MouseEvent) => {
